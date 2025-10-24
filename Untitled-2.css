@@ -1,0 +1,454 @@
+/* Base para Mobile First (Estilos por defecto para celular) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    line-height: 1.6;
+    color: #fff;
+}
+
+/* Estilos de sección para asegurar visibilidad en móvil */
+.seccion {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Clave para que se vea bien en celular */
+    /* fixed causa problemas en móviles; usar scroll por defecto y aplicar fixed solo en escritorio */
+    background-attachment: scroll;
+    
+    padding: 20px;
+    position: relative;
+}
+
+/* Se removió el overlay .seccion::before para eliminar el fondo negro con opacidad */
+
+.contenido-seccion {
+    position: relative;
+    z-index: 2;
+    max-width: 90%;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Estilos para los botones en las cartas */
+.carta-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.btn-carta {
+    display: block;
+    margin-top: -70px; /* Subir aún más (30px + 25% más arriba) */
+    transition: transform 0.3s ease;
+}
+
+.btn-img {
+    width: auto;
+    height: 32px; /* 20% más pequeño en móvil (40px * 0.8) */
+    cursor: pointer;
+}
+
+/* Estilo especial para los botones de regalo */
+.btn-group .btn-img {
+    height: 19.2px; /* 40% más pequeño que el tamaño móvil (32px * 0.6) */
+}
+
+/* Bajar el segundo botón (regalo2) solo en móvil */
+.btn-group .btn-carta:last-child {
+    transform: translateY(20%);
+}
+
+.btn-carta:hover {
+    transform: scale(1.1);
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column; /* Alinear verticalmente */
+    gap: 10px; /* Espacio más pequeño entre botones verticales */
+    margin-top: -10px;
+    align-items: center; /* Centrar horizontalmente */
+}
+
+/* Estilo para el botón de música */
+.music-btn {
+    background: transparent;
+    border: none; /* <--- CLAVE 1: Quita el borde */
+    /* Añadir estilos para eliminar el contorno que aparece al hacer clic/foco */
+    outline: none; /* <--- CLAVE 2: Quita el contorno de foco */
+    
+    padding: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Usar position: fixed para que el botón flote */
+    position: fixed; 
+    bottom: 5vh; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 10;
+}
+
+.music-btn img {
+    height: 48px;
+    width: auto;
+}
+
+@media (min-width: 768px) {
+    .music-btn img { height: 64px; }
+}
+
+/* Restaurar tamaño original en desktop (excepto botones de regalo) */
+@media (min-width: 768px) {
+    .btn-img {
+        height: 40px;
+    }
+    
+    .btn-group .btn-img {
+        height: 24px; /* 40% más pequeño que el tamaño desktop (40px * 0.6) */
+    }
+
+    /* Restaurar posición del botón regalo2 en desktop */
+    .btn-group .btn-carta:last-child {
+        transform: none;
+    }
+}
+
+/* Estilos cuenta regresiva */
+.countdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    color: #e2d6b7;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.countdown-box {
+    text-align: center;
+    min-width: 90px;
+    padding: 10px;
+}
+
+.countdown-number {
+    font-size: 2.8em;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.countdown-label {
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+/* Estilos de vestimenta */
+.vestimenta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin: 200px 0 20px 0;
+}
+
+.vestimenta-item {
+    text-align: center;
+}
+
+.vestimenta-icon {
+    width: 160px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.vestimenta-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para las cartas (móvil: columna) */
+.cartas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.carta-item {
+    width: 90%;
+    max-width: 240px; /* tamaño móvil (más pequeño) */
+}
+
+.carta-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Galería "Mis Momentos" - móvil primero (columna), escritorio: filas escalonadas */
+.momentos-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.momento-item { 
+    width: 90%;
+    max-width: 320px;
+}
+.momento-item img { 
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    /* quitar sombra/transparencia */
+    box-shadow: none;
+}
+
+/* Desktop: convertir en fila y aplicar escalonamiento (izquierda abajo -> derecha arriba) */
+@media (min-width: 768px) {
+    .momentos-gallery {
+        flex-direction: row;
+        gap: 28px;
+        align-items: flex-end; /* base común */
+        justify-content: center;
+    }
+    .momentos-gallery .momento-item { 
+        width: calc(33% - 28px);
+        max-width: 360px;
+        position: relative;
+    }
+    /* Escalonado por posición: izquierda más abajo, derecha más arriba */
+    .momentos-gallery .momento-item:nth-child(1) { transform: translateY(18px); }
+    .momentos-gallery .momento-item:nth-child(2) { transform: translateY(0px); }
+    .momentos-gallery .momento-item:nth-child(3) { transform: translateY(-18px); }
+    /* Para galerías con sólo 2 items: ligero escalonamiento */
+    .momentos-gallery.two .momento-item:nth-child(1) { transform: translateY(10px); }
+    .momentos-gallery.two .momento-item:nth-child(2) { transform: translateY(-10px); }
+}
+
+/* Itinerario: imagen que queda a la izquierda en móvil y centrada en escritorio */
+.itinerario-graphic {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Itinerario: imagen que queda a la izquierda en móvil y centrada en escritorio */
+/* ... */
+
+/* Itinerario: imagen que queda a la izquierda en móvil y centrada en escritorio */
+/* ... */
+
+.itinerario-img {
+    display: block;
+    width: 22.4%; /* reducido 20% del 28% */
+    max-width: 160px; /* reducido 20% de 200px */
+    height: auto;
+    /* CLAVE 1: Usamos margin-left en la base para moverlo a la derecha */
+    margin-left: 20px; 
+    /* CLAVE 2: Usamos transform para bajarlo sin afectar el flujo */
+    transform: translateY(55vh); /* mantiene la posición actual */
+}
+
+@media (min-width: 768px) {
+    /* ... (MANTENER ESTE BLOQUE EXACTAMENTE COMO ESTABA ANTES DE LOS ÚLTIMOS CAMBIOS) ... */
+    
+    .itinerario-graphic {
+        /* Aquí estaba tu ajuste: transform: translateY(-10%); */
+        transform: translateY(-10%); /* Si quieres que se quede subido */
+        text-align: center; 
+        margin-top: 30px;
+    }
+
+    .itinerario-img {
+        /* Aseguramos que los estilos de móvil se reseteen para centrar */
+        margin-left: auto; /* Anula el margin-left de 20px */
+        margin-right: auto;
+        transform: none; /* Anula el transform de 20px */
+    }
+}
+    /* Ajuste: subir el gráfico del itinerario un 10% en escritorio */
+    .itinerario-graphic {
+        transform: translateY(-10%);
+    }
+    
+
+/* Estilos para la carta en la sección Nombramientos */
+.nombramiento-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.nombramiento-item {
+    width: 90%;
+    max-width: 420px;
+}
+
+/* Ajuste específico para móvil: subir la carta un 20% del alto de la ventana */
+@media (max-width: 767px) {
+    .nombramiento-container {
+        /* mueve la carta hacia arriba un 10% del viewport height */
+        transform: translateY(-10vh);
+        margin-top: 8px;
+        z-index: 3;
+    }
+}
+
+/* Ajustes para el itinerario en móvil */
+@media (max-width: 767px) {
+    .itinerario-graphic {
+        transform: translateY(0);
+    }
+    .itinerario-img {
+        transform: translateX(0);
+    }
+}
+
+/* Tipografía Móvil */
+h1 { 
+    font-size: 2.2em; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-weight: 700;
+}
+h2 { 
+    font-size: 1.8em; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-weight: 700;
+}
+p, ul { 
+    font-size: 1.1em;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+
+
+/* ---------------------------------------------------------------------- */
+/* --- FONDOS PARA CELULAR (Default) - CARGA LOS FONDOS PNG DEL 1 AL 11 --- */
+/* ---------------------------------------------------------------------- */
+
+.fondo-inicio            { background-image: url('images/fondos/fondo1.png'); }
+.fondo-cuenta-regresiva  { background-image: url('images/fondos/fondo2.png'); }
+.fondo-esperamos         { background-image: url('images/fondos/fondo3.png'); }
+.fondo-carta             { background-image: url('images/fondos/fondo4.png'); }
+.fondo-vestimenta        { background-image: url('images/fondos/fondo5.png'); }
+.fondo-nombramiento      { background-image: url('images/fondos/fondo6.png'); }
+.fondo-itinerario        { background-image: url('images/fondos/fondo7.png'); }
+.fondo-momentos1         { background-image: url('images/fondos/fondo8.png'); }
+.fondo-momentos2         { background-image: url('images/fondos/fondo9.png'); }
+.fondo-momentos3         { background-image: url('images/fondos/fondo10.png'); }
+.fondo-final             { background-image: url('images/fondos/fondo11.png'); }
+
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: AJUSTES Y FONDOS PARA ESCRITORIO (> 768px) */
+/* ---------------------------------------------------- */
+@media (min-width: 768px) {
+    
+    /* Tipografía Escritorio */
+    h1 { font-size: 4em; }
+    h2 { font-size: 3em; }
+    p, ul { font-size: 1.25em; }
+
+    /* Contenedor Escritorio: ampliar para tarjetas grandes */
+    .contenido-seccion { max-width: 1800px; }
+
+    /* Vestimenta en horizontal para escritorio */
+    .vestimenta-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 100px;
+           margin: 220px 0 40px 0;
+    }
+
+    .vestimenta-icon {
+           width: 200px;
+    }
+
+    /* Cuenta regresiva en horizontal para escritorio */
+    .countdown-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .countdown-box {
+        min-width: 140px;
+        padding: 15px;
+    }
+
+    .countdown-number {
+        font-size: 4em;
+    }
+
+    .countdown-label {
+        font-size: 1.1em;
+        margin-top: 10px;
+    }
+
+    /* Cartas en horizontal para escritorio (centradas) */
+    .cartas-container {
+        flex-direction: row;
+        justify-content: center; /* centrar las cartas en el contenedor */
+        gap: 80px; /* más separación para cartas grandes */
+        margin: 40px auto 0 auto;
+        width: auto;
+        align-items: center;
+        /* permitir que no se rompan en pantallas muy pequeñas */
+        flex-wrap: nowrap;
+    }
+
+    .carta-item {
+        /* Base anterior 600px, luego 7% -> 642px; ahora aumentar 20% respecto a 642px */
+        /* 642px * 1.20 = 770.4px -> usamos 770px */
+        flex: 0 1 770px;
+        max-width: 770px;
+    }
+
+    .carta-img {
+        border-radius: 10px;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    }
+
+    /* --- FONDOS PARA ESCRITORIO (Sobrescriben los de móvil) --- */
+
+    /* Usar PNG existentes en la carpeta images/fondos */
+    .fondo-inicio            { background-image: url('images/fondos/fondo_ella.png'); }
+    .fondo-cuenta-regresiva  { background-image: url('images/fondos/fondo_cuenta_regresiva.png'); }
+    .fondo-esperamos         { background-image: url('images/fondos/fondo_esperamos.png'); }
+    .fondo-carta             { background-image: url('images/fondos/fondo_carta.png'); } /* Nuevo fondo */
+    .fondo-vestimenta        { background-image: url('images/fondos/codigo_vestimenta.png'); }
+    .fondo-nombramiento      { background-image: url('images/fondos/fondo_nombramientos.png'); }
+    .fondo-itinerario        { background-image: url('images/fondos/fondo_itinerario.png'); }
+    .fondo-momentos1         { background-image: url('images/fondos/fondo_momentos.png'); }
+    .fondo-momentos2         { background-image: url('images/fondos/fondo_momentos2.png'); }
+    .fondo-momentos3         { background-image: url('images/fondos/fondo_momentos3.png'); }
+    .fondo-final             { background-image: url('images/fondos/final.png'); }
+
+    /* En escritorio podemos usar attachment fixed si se desea */
+    .seccion { background-attachment: fixed; }
+}
